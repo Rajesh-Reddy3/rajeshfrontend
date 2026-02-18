@@ -1,0 +1,26 @@
+.sidebar {
+  width: 220px;
+  background: #1f2937;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  margin-bottom: 30px;
+}
+
+.sidebar nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: #374151;
+  padding-left: 10px;
+}

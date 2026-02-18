@@ -1,0 +1,43 @@
+<div class="container">
+  <!-- Header row -->
+  <div class="table-header">
+    <h2 class="title">Our Users</h2>
+
+    <button class="btn create" (click)="createUser()">+ Add User</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th class="actions-col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phonenumber }}</td>
+
+          <!-- Address in RED using directive -->
+          <td appRedAddress>
+            {{ user.address }}
+          </td>
+
+          <td class="actions">
+            <button class="btn edit" (click)="editUser(user.id)">Edit</button>
+            <button class="btn delete" (click)="deleteUser(user.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
