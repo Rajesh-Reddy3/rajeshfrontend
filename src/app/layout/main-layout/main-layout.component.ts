@@ -11,4 +11,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css'],
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
+  increaseUniqueUsers() {
+    console.log('Sidebar navigation clicked');
+  }
+}

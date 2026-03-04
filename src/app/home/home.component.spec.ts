@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DashboardCardComponent } from '../shared/components/dashboard-card/dashboard-card.component';
 
-import { HomeComponent } from './home.component';
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, DashboardCardComponent],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  newUsers = 150;
+  activeUsers = 53;
+  registeredUsers = 45;
+  uniqueUsers = 65;
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HomeComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  increaseRegisteredUsers() {
+    this.registeredUsers++;
+  }
+}

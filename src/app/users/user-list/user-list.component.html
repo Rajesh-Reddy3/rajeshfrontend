@@ -2,7 +2,6 @@
   <!-- Header row -->
   <div class="table-header">
     <h2 class="title">Our Users</h2>
-
     <button class="btn create" (click)="createUser()">+ Add User</button>
   </div>
 
@@ -25,13 +24,13 @@
           <td>{{ user.email }}</td>
           <td>{{ user.phonenumber }}</td>
 
-          <!-- Address in RED using directive -->
+          <!-- ✅ Address in RED + UPPERCASE -->
           <td appRedAddress>
-            {{ user.address }}
+            {{ user.address | customUppercase }}
           </td>
 
           <td class="actions">
-            <button class="btn edit" (click)="editUser(user.id)">Edit</button>
+            <button class="btn edit" (click)="editUser(user)">Edit</button>
             <button class="btn delete" (click)="deleteUser(user.id)">
               Delete
             </button>

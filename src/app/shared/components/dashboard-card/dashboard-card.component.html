@@ -1,0 +1,19 @@
+<div class="small-box" [ngClass]="color">
+  <div class="inner">
+    <h3>{{ count }}</h3>
+    <p>{{ title }}</p>
+  </div>
+
+  <div class="icon">
+    <i class="fas fa-users"></i>
+  </div>
+
+  <button
+    *ngIf="showButton"
+    class="btn btn-dark btn-sm position-absolute"
+    style="top: 10px; right: 10px"
+    (click)="increaseCount()"
+  >
+    +
+  </button>
+</div>

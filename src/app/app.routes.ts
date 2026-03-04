@@ -12,7 +12,6 @@ export const routes: Routes = [
       import('./layout/main-layout/main-layout.component').then(
         (m) => m.MainLayoutComponent,
       ),
-
     children: [
       {
         path: '',
@@ -37,7 +36,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'users/edit/:id',
+        path: 'users/edit', // ✅ FIXED (removed slash)
         loadComponent: () =>
           import('./users/user-edit/user-edit.component').then(
             (m) => m.UserEditComponent,

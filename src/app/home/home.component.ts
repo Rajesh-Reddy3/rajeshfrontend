@@ -1,11 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DashboardCardComponent } from '../shared/components/dashboard-card/dashboard-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DashboardCardComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  newUsers = 150;
+  activeUsers = 53;
+  registeredUsers = 45;
+  uniqueUsers = 65;
+
+  increaseRegisteredUsers() {
+    this.registeredUsers++;
+  }
+}

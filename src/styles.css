@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "admin-lte/dist/css/adminlte.min.css";
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700");
+
+/* Global body styling */
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional layout fixes */
+.content-wrapper {
+  padding: 20px;
+}

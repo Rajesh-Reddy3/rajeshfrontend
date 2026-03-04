@@ -10,6 +10,7 @@ import {
 
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { UserDataService } from '../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -29,11 +30,12 @@ export class UserEditComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,
+    private userDataService: UserDataService,
   ) {}
 
   ngOnInit(): void {
-    // ✅ FIXED VALIDATORS SYNTAX
     this.userForm = this.fb.group({
+      id: [],
       name: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
       phonenumber: [
@@ -43,33 +45,27 @@ export class UserEditComponent implements OnInit {
       address: ['', [Validators.required, Validators.minLength(4)]],
     });
 
-    // ✅ FIXED ROUTE PARAM SUBSCRIBE
-    this.route.paramMap.subscribe((params) => {
-      const paramId = params.get('id');
+    const url = this.router.url;
 
-      if (paramId) {
-        this.isEditMode = true;
-        this.id = Number(paramId);
+    // ✅ CREATE MODE
+    if (url.includes('new')) {
+      this.isEditMode = false;
+      return;
+    }
 
-        this.userService.getById(this.id).subscribe({
-          next: (data: User) => {
-            console.log('User data received:', data);
-
-            // ✅ PATCH VALUES
-            this.userForm.patchValue({
-              name: data.name,
-              email: data.email,
-              phonenumber: data.phonenumber,
-              address: data.address,
-            });
-          },
-          error: (err) => {
-            console.error(err);
-            this.router.navigate(['/app/users']);
-          },
-        });
-      }
-    });
+    // ✅ EDIT MODE
+    if (url.includes('edit')) {
+      this.userDataService.selectedUser$.subscribe((user) => {
+        if (user) {
+          this.isEditMode = true;
+          this.id = user.id;
+          this.userForm.patchValue(user);
+        } else {
+          // If no user selected → redirect
+          this.router.navigate(['/app/users']);
+        }
+      });
+    }
   }
 
   get f() {
@@ -87,6 +83,7 @@ export class UserEditComponent implements OnInit {
 
     if (this.isEditMode && this.id) {
       this.userService.update(this.id, user).subscribe(() => {
+        this.userDataService.clearUser();
         this.router.navigate(['/app/users']);
       });
     } else {
@@ -97,6 +94,7 @@ export class UserEditComponent implements OnInit {
   }
 
   cancel(): void {
+    this.userDataService.clearUser();
     this.router.navigate(['/app/users']);
   }
 }

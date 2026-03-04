@@ -2,7 +2,7 @@
   <app-navbar></app-navbar>
 
   <div class="content-wrapper">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (navigationClicked)="increaseUniqueUsers()"></app-sidebar>
 
     <div class="main-content">
       <router-outlet></router-outlet>

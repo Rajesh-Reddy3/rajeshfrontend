@@ -5,11 +5,18 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import { RedAddressDirective } from '../../shared/directives/red-address.directive';
+import { CustomUppercasePipe } from '../../shared/pipes/custom-uppercase.pipe';
+import { UserDataService } from '../../shared/services/user-data.service';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, RedAddressDirective],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RedAddressDirective,
+    CustomUppercasePipe, 
+  ],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })
@@ -19,6 +26,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
+    private userDataService: UserDataService,
   ) {}
 
   ngOnInit(): void {
@@ -30,12 +38,15 @@ export class UserListComponent implements OnInit {
       this.users = data;
     });
   }
+
   createUser(): void {
+    this.userDataService.clearUser(); // 🔥 IMPORTANT
     this.router.navigate(['/app/users/new']);
   }
 
-  editUser(id?: number): void {
-    this.router.navigate(['/app/users/edit', id]);
+  editUser(user: User): void {
+    this.userDataService.setSelectedUser(user); // Send data
+    this.router.navigate(['/app/users/edit']); // Navigate
   }
 
   deleteUser(id?: number): void {

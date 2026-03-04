@@ -1,1 +1,35 @@
-<p>home works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">Dashboard</h1>
+
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <app-dashboard-card title="New Users" [count]="150" color="bg-info">
+      </app-dashboard-card>
+    </div>
+
+    <div class="col-lg-3 col-6">
+      <app-dashboard-card title="Active Users" [count]="53" color="bg-success">
+      </app-dashboard-card>
+    </div>
+
+    <div class="col-lg-3 col-6">
+      <app-dashboard-card
+        title="Registered Users"
+        [count]="registeredUsers"
+        color="bg-warning"
+        [showButton]="true"
+        (increment)="increaseRegisteredUsers()"
+      >
+      </app-dashboard-card>
+    </div>
+
+    <div class="col-lg-3 col-6">
+      <app-dashboard-card
+        title="Unique Users"
+        [count]="uniqueUsers"
+        color="bg-danger"
+      >
+      </app-dashboard-card>
+    </div>
+  </div>
+</div>

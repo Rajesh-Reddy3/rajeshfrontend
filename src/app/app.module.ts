@@ -13,6 +13,7 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { DashboardCardComponent } from './shared/components/dashboard-card/dashboard-card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AboutComponent } from './about/about.component';
     NavbarComponent,
     HomeComponent,
     AboutComponent,
+    DashboardCardComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule],
   bootstrap: [AppComponent],
